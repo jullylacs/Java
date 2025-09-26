@@ -10,4 +10,8 @@ package com.mycompany.padaria;
  */
 public class ProdutoService {
     
+    public static List<Produuto> inicializarProdutos() {
+        List<Produto> produtos =    
+    }
+    
 }

@@ -4,6 +4,7 @@
  */
 package com.mycompany.padaria.Interface;
 import com.mycompany.padaria.Produto;
+import java.awt.ComponentOrientation;
 import javax.swing.JTextArea;
 /**
  *
@@ -20,29 +21,26 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         p0 = new Produto();
-        p0.setCodigo(0);
         p0.setDescricao("Mortadela");
         p0.setPreco (2.5);
 
         Produto p1 = new Produto();
-        p1.setCodigo(0);
         p1.setDescricao("Pão");
         p1.setPreco (5.5);
         
         Produto p2 = new Produto();
-        p2.setCodigo(0);
         p2.setDescricao("Mussarela");
         p2.setPreco (3.5);
         
         Produto p3 = new Produto();
-        p3.setCodigo(0);
         p3.setDescricao("Sonho");
         p3.setPreco (8.5);
-        jComboBox1.addItem(p0.getDescricao());
-        jComboBox1.addItem(p1.getDescricao());
-        jComboBox1.addItem(p2.getDescricao());
-        jComboBox1.addItem(p3.getDescricao());
-
+        
+        jComboBox1.addItem(p0);
+        jComboBox1.addItem(p1);
+        jComboBox1.addItem(p2);
+        jComboBox1.addItem(p3);
+        
 
     }
 
@@ -61,6 +59,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jSpinner1 = new javax.swing.JSpinner();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -76,7 +75,7 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton3.setBackground(new java.awt.Color(102, 0, 102));
-        jButton3.setText("Teste");
+        jButton3.setText("Ok");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -98,12 +97,16 @@ public class Principal extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        jSpinner1.setMaximumSize(new java.awt.Dimension(10, 10));
+        jSpinner1.setMinimumSize(new java.awt.Dimension(1, 1));
+        jSpinner1.setName(""); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +114,9 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(285, 285, 285)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, 0, 267, Short.MAX_VALUE)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(260, 260, 260))
@@ -135,19 +140,38 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)))
                 .addComponent(jButton3)
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        
+        double Total = ((Produto)jComboBox1.getSelectedItem()
+                ).getPreco()
+                * Integer.parseInt(jSpinner1
+                .getValue()
+                .toString());
+        
+        jTextArea1.append(
+            jSpinner1.getValue().toString()
+                + "x "
+                + ((Produto)jComboBox1
+                     .getSelectedItem())
+                     .toString()
+                + " = "
+                + Total);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -181,10 +205,11 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Produto> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

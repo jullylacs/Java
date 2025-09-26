@@ -12,6 +12,11 @@ public class Produto {
     private int Codigo;
     private String Descricao;
     private double Preco;
+    
+    @Override
+    public String toString(){
+        return this.Codigo +"-"+ this.Descricao;
+    }
 
     public int getCodigo() {
         return Codigo;

@@ -1,5 +1,9 @@
-com\mycompany\padaria\Interface\Principal$2.class
-com\mycompany\padaria\Interface\Principal.class
 com\mycompany\padaria\Padaria.class
+Interface\Principal.class
+service\ProdutoService.class
+com\mycompany\padaria\ProdutoService.class
+Interface\Principal$1.class
 com\mycompany\padaria\Produto.class
-com\mycompany\padaria\Interface\Principal$1.class
+model\ProdutoEnum.class
+Interface\Principal$2.class
+model\Produto.class
